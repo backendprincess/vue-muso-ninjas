@@ -38,7 +38,7 @@ export default {
             if (file.value) {
                 isPending.value = true
                 await uploadImage(file.value)
-                await addDoc({
+                const res = await addDoc({
                     title: title.value,
                     description: description.value,
                     userId: user.value.uid,
@@ -50,7 +50,7 @@ export default {
                 })
                 isPending.value = false
                 if (!error.value) {
-                    router.push({ name: 'Home' })
+                    router.push({ name: 'PlaylistDetails', params: { id: res.id } })
                 }
             }
         }
