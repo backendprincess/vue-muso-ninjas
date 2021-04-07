@@ -14,7 +14,6 @@ const getDocument = (collection, id) => {
             error.value = 'That document does not exist'
         }
 
-        document.value = results
         error.value = null
     }, (err) => {
         console.log(err.message)
