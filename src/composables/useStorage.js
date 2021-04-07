@@ -2,7 +2,7 @@ import { ref } from '@vue/reactivity'
 import { projectStorage } from '../firebase/config'
 import getUser from './getUser'
 
-const { user } = getUser
+const { user } = getUser()
 
 const useStorage = () => {
     const error = ref(null)
