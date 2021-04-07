@@ -16,6 +16,15 @@ const requireAuth = (to, from, next) => {
   }
 }
 
+const requireNoAuth = (to, from, next) => {
+  let user = projectAuth.currentUser
+  if (user) {
+    next({ name: 'Home' })
+  } else {
+    next()
+  }
+}
+
 const routes = [
   {
     path: '/',
@@ -26,12 +35,14 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: Login,
+    beforeEnter: requireNoAuth
   },
   {
     path: '/signup',
     name: 'Signup',
-    component: Signup
+    component: Signup,
+    beforeEnter: requireNoAuth
   },
   {
     path: '/playlists/create',

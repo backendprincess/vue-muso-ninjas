@@ -17,6 +17,7 @@
 import useStorage from '@/composables/useStorage'
 import useCollection from '@/composables/useCollection'
 import getUser from '@/composables/getUser'
+import { useRouter } from 'vue-router'
 import { timestamp } from '@/firebase/config'
 import { ref } from 'vue'
 
@@ -25,6 +26,7 @@ export default {
         const { filePath, url, uploadImage } = useStorage()
         const { error, addDoc } = useCollection('playlists')
         const { user } = getUser()
+        const router = useRouter()
 
         const title = ref('')
         const description = ref('')
@@ -48,7 +50,7 @@ export default {
                 })
                 isPending.value = false
                 if (!error.value) {
-                    console.log('Playlist added')
+                    router.push({ name: 'Home' })
                 }
             }
         }
