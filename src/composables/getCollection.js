@@ -7,6 +7,7 @@ const getCollection = (collection, query) => {
 
     let collectionRef = projectFirestore.collection(collection)
         .orderBy('createdAt')
+    console.log(collectionRef.value)
 
     if (query) {
         collectionRef = collectionRef.where(...query)
